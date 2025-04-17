@@ -36,9 +36,12 @@
     "typescript": "^5.4.5"
   },
   "peerDependencies": {
-    "o1js": "^2.*"
+    "o1js": "file:../../o1labs/o1js/o1js-2.4.0.tgz"
   },
   "engines": {
     "node": ">=18.14.0"
+  },
+  "dependencies": {
+    "@o1js/testing": "file:../../o1labs/o1js/src/testing/o1js-testing-0.0.1.tgz"
   }
 }
