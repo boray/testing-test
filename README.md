@@ -2,25 +2,24 @@
 
 This template uses TypeScript.
 
-## How to build
-
+## Usage Guide
+## UPDATE PATHS
 ```sh
+cd ~/o1js
+git switch boray/o1js-testing
+GIT_LFS_SKIP_SMUDGE=1 git submodule update --recursive
+rm -rf node_modules
+npm i
+npm run prepublishOnly
+npm run pack
+cd src/testing
+rm -rf node_modules
+npm i
+npm run prepublishOnly
+npm run pack
+cd ~/testing-test
+npm i
 npm run build
+node build/src/main.js
 ```
 
-## How to run tests
-
-```sh
-npm run test
-npm run testw # watch mode
-```
-
-## How to run coverage
-
-```sh
-npm run coverage
-```
-
-## License
-
-[Apache-2.0](LICENSE)

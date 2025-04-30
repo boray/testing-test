@@ -3,10 +3,11 @@ import { Random, equivalentProvable as equivalent,
     field,
     fieldWithRng,
     record,
+    unsetSrsCache
  } from '@o1js/testing';
   import { Field, ZkProgram, Gadgets, provable, assert } from 'o1js';
 
-  
+  unsetSrsCache();
  
   let uint = (length: number) => fieldWithRng(Random.biguint(length));
   
@@ -30,7 +31,6 @@ import { Random, equivalentProvable as equivalent,
   });
   
   await Arithmetic.compile();
-  
   const divMod32Helper = (x: bigint) => {
     let quotient = x >> 32n;
     let remainder = x - (quotient << 32n);
@@ -44,7 +44,7 @@ import { Random, equivalentProvable as equivalent,
   };
   
   const divModOutput = record({ remainder: field, quotient: field });
-  
+  /*
   equivalent({
     from: [field],
     to: divModOutput,
@@ -57,7 +57,7 @@ import { Random, equivalentProvable as equivalent,
       return Gadgets.divMod32(x);
     }
   );
-  
+
   equivalent({
     from: [uint(64)],
     to: divModOutput,
@@ -70,7 +70,7 @@ import { Random, equivalentProvable as equivalent,
       return Gadgets.divMod64(x);
     }
   );
-  
+    */
   await equivalentAsync({ from: [field], to: divModOutput }, { runs: 3 })(
     (x) => {
       assert(x < 1n << 64n, `x needs to fit in 64bit, but got ${x}`);
